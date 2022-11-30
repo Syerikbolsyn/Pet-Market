@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Edit Profile {% endblock %}
+{% block content %}
+   {% if request.user.userc %}
+    <div class = "container">
+        <h3> Edit Profile</h3>
+        <hr/>
+        <div class = "clearable-file-input" style="background-color: bisque ">
+            <form action="" method="GET">
+                Логин: <br>
+                <input type="text" name="username" placeholder="{{ user.username }}">
+                <br>
+                Почта: <br>
+                <input type="text" name="email" placeholder="{{ user.email }}">
+                <br>
+                Пароль:
+                <br>
+                <input type="text" name="password" placeholder=" *** ">
+            <br>
+            <button type="submit" style="position: center">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

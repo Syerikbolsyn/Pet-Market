@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Edit Pet {% endblock %}
+{% block content %}
+   {% if request.user.userc %}
+    <div class = "container">
+        <h3>Редактировать объявление</h3>
+        <hr/>
+        <div class = "clearable-file-input" style="background-color: bisque ">
+            <form action="" method="GET">
+                Цена: <br>
+                <input type="number" name="price" placeholder="{{ edit_pet.price }}">
+                <br>
+                Город: <br>
+                <select name="city" placeholder="{{ edit_pet.city }}">
+                        <option>-</option>
+                        {% for c in cities %}
+                        <option>{{ c }}</option>
+                        {% endfor %}
+
+                </select>
+                <br>
+                Описание:
+                <br>
+                <textarea  type="text" name="comment" style="height: 240px; width: 440px">
+                    {{ edit_pet.comment }}
+                </textarea>
+            <br>
+                <a href="reverce"><button type="submit" style="position: center">Сохранить</button></a>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

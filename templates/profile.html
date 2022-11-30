@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}  {% endblock %}
+{% block content %}
+    <div class = "container">
+        <h3>Личный кабинет</h3>
+        <hr/>
+        {% if request.user.userc %}
+            <div class = "clearable-file-input" style="background-color: rgb(250,255,250)">
+
+                Логин:            {{ user.username }}
+                 <br>
+                Имя: {{ user.userc.first_name }}
+                <br>
+                Фамилия: {{ user.userc.last_name }}
+                <br>
+                Почта:                {{ user.email }}
+                <br>
+                Телефон: {{ user.userc.phone }}
+                <br>
+
+          </div>
+
+            <br>
+
+            <a href="{% url 'main:editprofile' user.pk %}" class="btn btn-primary">Редактировать</a>
+            <a href="{% url 'main:petsbyuser' user.userc.pk %}" class="btn btn-info"> Мои объявления</a>
+        {% else %}
+            Login please
+        {% endif %}
+
+    </div>
+{% endblock %}

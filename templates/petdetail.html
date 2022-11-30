@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}{{ p.name}}{% endblock %}
+
+{% block content %}
+<div class = "container">
+    <div class="col-md-12">
+    <h3 align="left-center">Питомец: {{ pet.name }}</h3>
+        <hr>
+    <div class="row ">
+        <div class="col-md-6">
+            <img src="{{ pet.image.url}}" alt="" class="img-fluid">
+            <div class = "row" style="background-color: white">
+                {% for pi in pet.petimage_set.all %}
+                    <div class="col-md-4">
+                       <a href="{{ pi.image.url }}" target="_blank">
+                        <img src="{{ pi.image.url }}" class="img-fluid" alt="">
+                       </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6" >
+            <h4>{{ pet.name }} </h4>
+{#            (Viewed {{ pet.view_count }} times)#}
+            <h5 class >Цена: {{ pet.price }} тг</h5>
+            <a href="{% url 'main:basket' pet.id %}" class="btn btn-primary"> Добавить в корзину 🛒</a>
+            <hr>
+            <h5 class = "text-info">Вид: {{ pet.type }}</h5>
+            <h5 class="text-info">Порода: {{ pet.breed }}</h5>
+            <h5 class="text-info">Пол: {{ pet.gender }}</h5>
+            <h5 class="text-info">Город: {{ pet.city }}</h5>
+            <h5 class="text-info">День рождения: {{ pet.birthday_date}} </h5>
+            <h5 class = "text-info"> Возраст: {{ age_year }} год(лет) {{ age_m }} месяц {{ age_day }} день </h5>
+            <h5 class="" style="color: green">Контакты: {{ phone }}</h5>
+            <h5 class="" style="color: green">Почта: {{ email }}</h5>
+            <hr>
+
+            <h5>Описание: {{ pet.comment }}</h5>
+
+
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

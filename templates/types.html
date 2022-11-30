@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class ="container">
+
+    <h1 class ="text-center">Welcome to our website</h1>
+    <hr>
+    <div class = "row mt-3">
+        {% for type in types %}
+        <div class = "col-md-3">
+            <div class = "m-2">
+                <h4><a href="[name = 'home']">{{ type.name }}</a></h4>
+                <img src="{{ type.image.url }}" alt="" class ="img-fluid" style="height:2500" oject-fit:cover>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

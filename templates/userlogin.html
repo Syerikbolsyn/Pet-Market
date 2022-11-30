@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} User Login {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-6 max-auto">
+            <h3 class = "text-center"> Войти</h3><hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                &ensp; &emsp; &emsp; &emsp; <button class="btn btn-primary">Войти</button>
+                <a href="{% url 'main:forgotpassword' %}">Забыли пароль?</a>
+                {% if error %}
+                    <li style="color: red" >{{ error }}</li>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

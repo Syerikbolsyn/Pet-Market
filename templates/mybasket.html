@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class ="container">
+
+    <h1 class ="text-center">Избранное</h1>
+    <hr>
+    <div class = "row mt-3">
+        {% for b in cart.basket_set.all %}
+        <div class = "col-md-3 card">
+        <div class = "m-2">
+            <h4><a href="{% url 'main:petdetail' b.pet.pk %}">{{ b.pet.name }}</a>
+            </h4>
+            <img src="{{ b.pet.image.url }}" alt="" class="img-fluid" style="object-fit:contain; height: 200px; width: 100%; position: center; ">
+            <p class="mt-3">Цена: {{ b.pet.price }} тг</p>
+            <p class="mt-3">Пол: {{ b.pet.gender    }} &emsp; &emsp;
+                <a href="{% url 'main:managebasket' b.id %}?action=rmv" class="btn btn-danger" style="text-align: right">&times</a>
+            </p>
+
+
+
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{% endblock %}

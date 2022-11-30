@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}{{ type.name}}{% endblock %}
+
+{% block content %}
+<div class = "container">
+    <h3>Вид: {{ type.name }}</h3>
+        <hr/>
+    <div class = "clearable-file-input" style="background-color: bisque ">
+        <form action="" method="GET">
+            Цена: <br>
+            <input type="text" name="minprice" placeholder="от">
+            <input type="text" name="maxprice" placeholder="до">
+            <br>
+            Год: <br>
+            <input type="date" name="db_f">
+            <input type="date" name="db_t">
+            <br>
+             Порода:
+            <br>
+            {% for b in breed %}
+                <input name ="{{ b.name }}" type="checkbox"> &nbsp; {{b.name}}
+            {% endfor %}
+            <br>
+            Пол:
+            <br>
+            {% for g in gender %}
+                <input name ="{{ g.name }}" type="checkbox"> &nbsp; {{g.name}}
+            {% endfor %}
+            <br>
+            Город:
+            <br>
+            {% for c in city %}
+                <input name ="{{ c.name }}" type="checkbox"> &nbsp; {{c.name}}
+            {% endfor %}
+            <br>
+            <br>
+            <button type="submit" style="position: center">Показать</button>
+            </form>
+    </div>
+    <hr>
+     <div class="row">
+        {% for p in pet_list %}
+            <div class = "col-md-3 card">
+                <div class = "m-2">
+                    <h4><a href="{% url 'main:petdetail' p.pk %}">{{ p.name }}</a></h4>
+                    <img src="{{ p.image.url }}" alt="" style="object-fit:contain;
+                        height: 200px; width: 100%">
+                    <p class="mt-3">Цена: {{ p.price }} тг</p>
+                    <p class="mt-3">Пол: {{ p.gender }}</p>
+                    <a href=" {%url 'main:basket' p.id %} " target="_blank" class="btn btn-primary">Добавить 🛒</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+    <nav aria-label="..." style="position: center">
+        <ul class="pagination">
+            {% if pet_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pet_list.previous_page_number }}">Предыдущая</a>
+              </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Предыдущая</a>
+            </li>
+            {% endif %}
+
+            {% for i in pet_list.paginator.page_range %}
+            {% if i == pet_list.number %}
+            <li class="page-item active"><a class="page-link">{{i}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pet_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pet_list.next_page_number }}">Следующая</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Следующая</a>
+            </li>
+            {% endif %}
+        </ul>
+      </nav>
+
+</div>
+{% endblock %}

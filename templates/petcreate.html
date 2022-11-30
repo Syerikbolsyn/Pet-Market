@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Add New Pet {% endblock %}
+{%  block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <h3>Добавить объявление</h3>
+            <hr>
+            <form action="" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class = "btn btn-primary">Загрузить данные</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

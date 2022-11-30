@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} User Registration {% endblock %}
+{% block content %}
+<style>
+    .errorlist{
+        color:red
+    }
+</style>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-6 max-auto">
+            <h3 class = "text-center"> Регистрация пользователя</h3><hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary">Регистрировать</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
